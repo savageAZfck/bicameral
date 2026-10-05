@@ -266,9 +266,10 @@ pub struct DissentRecord {
 // ---------------------------------------------------------------- resolution
 
 /// The state of a motion under the rule.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, Default)]
 pub enum Resolution {
     /// Still collecting ballots.
+    #[default]
     Pending,
     /// Rule satisfied — the motion carries.
     Passed,
@@ -321,12 +322,6 @@ pub struct Hansard {
 pub struct MotionState {
     pub ballots: Vec<Ballot>,
     pub resolution: Resolution,
-}
-
-impl Default for Resolution {
-    fn default() -> Self {
-        Resolution::Pending
-    }
 }
 
 impl Hansard {
